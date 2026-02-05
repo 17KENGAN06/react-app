@@ -1,27 +1,31 @@
-import './app.css'
+import './app.css';
 
-import AppFilter from '../app-filter/app-filter'
-import AppInfo from '../app-info/app-info'
-import EmployeesAddForm from'../employees-add-form/employees-add-form'
-import EmployeesList from '../employees-list/employees-list'
-import EmployeesListItem from '../employees-list-item/employees-list-item'
-import SearchPanel from '../search-panel/search-panel'
+import AppFilter from '../app-filter/app-filter';
+import AppInfo from '../app-info/app-info';
+import EmployeesAddForm from '../employees-add-form/employees-add-form';
+import EmployeesList from '../employees-list/employees-list';
+import SearchPanel from '../search-panel/search-panel';
 
 const App = () => {
-    return (
-        <div className="app">
-            <AppInfo />
+  const data = [
+    { name: 'John', salary: 8000, increase: true },
+    { name: 'Mark', salary: 9000, increase: false },
+    { name: 'Evil', salary: 10000, increase: true },
+  ];
 
-            <div className="search-panel">
-                <SearchPanel/>
-                <AppFilter/>
-            </div>
-            
-            <EmployeesList/>
-            <EmployeesAddForm/>
-        </div>
-    
-    );
-}
+  return (
+    <div className="app">
+      <AppInfo />
+
+      <div className="search-panel">
+        <SearchPanel />
+        <AppFilter />
+      </div>
+
+      <EmployeesList data={data} />
+      <EmployeesAddForm />
+    </div>
+  );
+};
 
 export default App;
