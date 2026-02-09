@@ -1,65 +1,124 @@
 .list-group-item {
-    padding: 15px 20px;
-    border-bottom: 1px solid #3d5a80;
+  padding: 16px 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 14px;
+  margin-bottom: 12px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .list-group-item:last-child {
-    border-bottom: none;
+  margin-bottom: 0;
 }
 
 .list-group-item span {
-    line-height: 35px;
-    font-size: 20px;
-    cursor: pointer;
-    min-width: 550px;
+  line-height: 35px;
+  font-size: 20px;
+  cursor: pointer;
+  min-width: 550px;
+  color: #f6f8ff;
 }
 
 .list-group-item input {
-    line-height: 35px;
-    font-size: 20px;
-    text-align: center;
-    border: 0;
+  line-height: 35px;
+  font-size: 18px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 10px;
+  color: #eaf1ff;
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .list-group-item button {
-    width: 35px;
-    height: 35px;
-    margin: 3px;
-    font-size: 17px;
-    border: none;
-    cursor: pointer;
+  width: 35px;
+  height: 35px;
+  margin: 3px;
+  font-size: 17px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.06);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.list-group-item button:hover {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.16);
 }
 
 .list-group-item .btn-cookie {
-    color: #e09f3e;
+  color: #ffd166;
 }
 
 .list-group-item .btn-trash {
-    color: #e5383b;
+  color: #ff6b6b;
 }
 
 .list-group-item .fa-star {
-    width: 35px;
-    height: 35px;
-    text-align: center;
-    line-height: 35px;
-    font-size: 16px;
-    color: #FFD700;
-    transition: 0.3s all;
-    transform: translateX(30px);
-    opacity: 0;
+  width: 35px;
+  height: 35px;
+  text-align: center;
+  line-height: 35px;
+  font-size: 16px;
+  color: #ffd166;
+  transition: 0.3s all;
+  transform: translateX(30px);
+  opacity: 0;
 }
 
 .list-group-item.like .fa-star {
-    opacity: 1;
-    transform: translateX(0px);
+  opacity: 1;
+  transform: translateX(0px);
 }
 
-.list-group-item.increase .list-group-item-label, .list-group-item.increase .list-group-item-input {
-    color: #e09f3e;
+.list-group-item.increase .list-group-item-label,
+.list-group-item.increase .list-group-item-input {
+  color: #ffd166;
 }
-  
+
 .list-group-item.increase .btn-star {
-    color: #aeaeae;
+  color: rgba(234, 241, 255, 0.7);
 }
-  
+
+.list-group-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 30px rgba(15, 23, 42, 0.25);
+}
+
+@media (max-width: 900px) {
+  .list-group-item span {
+    min-width: 0;
+    flex: 1 1 auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .list-group-item {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .list-group-item span {
+    font-size: 18px;
+    flex: 1 1 100%;
+  }
+
+  .list-group-item input {
+    width: 120px;
+  }
+}
+
+@media (max-width: 480px) {
+  .list-group-item {
+    padding: 14px 14px;
+  }
+
+  .list-group-item input {
+    width: 100%;
+  }
+
+  .list-group-item .d-flex {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}

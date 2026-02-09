@@ -1,5 +1,26 @@
 .app {
-    margin: 0 auto;
-    max-width: 1000px;
+  margin: 40px auto 80px;
+  max-width: 1000px;
+  padding: 0 20px;
+}
+
+@media (max-width: 1024px) {
+  .app {
+    margin: 32px auto 64px;
+    padding: 0 18px;
   }
-  
+}
+
+@media (max-width: 768px) {
+  .app {
+    margin: 24px auto 48px;
+    padding: 0 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .app {
+    margin: 18px auto 36px;
+    padding: 0 12px;
+  }
+}

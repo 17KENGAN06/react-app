@@ -1,3 +1,33 @@
 .btn-group {
-    margin-top: 20px;
+  margin-top: 20px;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.btn-group .btn {
+  border-radius: 999px;
+  padding: 8px 16px;
+}
+
+.btn-group .btn-light {
+  background: rgba(255, 255, 255, 0.22);
+  border-color: rgba(255, 255, 255, 0.35);
+  color: #ffffff;
+}
+
+.btn-group .btn-outline-light {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: #eaf1ff;
+}
+
+@media (max-width: 768px) {
+  .btn-group {
+    margin-top: 12px;
+  }
+
+  .btn-group .btn {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
 }

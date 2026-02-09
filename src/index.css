@@ -1,13 +1,102 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  min-height: 100vh;
+  font-family: 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+    'Helvetica Neue', sans-serif;
+  color: #eaf1ff;
+  background: radial-gradient(1200px 800px at 10% 10%, rgba(108, 99, 255, 0.35), transparent 60%),
+    radial-gradient(1000px 700px at 90% 20%, rgba(32, 201, 151, 0.25), transparent 60%),
+    radial-gradient(900px 700px at 50% 90%, rgba(255, 106, 213, 0.25), transparent 60%),
+    linear-gradient(135deg, #0f172a, #111827);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+body::before,
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+
+body::before {
+  backdrop-filter: blur(18px) saturate(120%);
+}
+
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+input,
+button {
+  font-family: inherit;
+}
+
+.btn,
+.form-control {
+  border-radius: 12px;
+}
+
+.form-control {
+  color: #eaf1ff;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(10px);
+}
+
+.form-control::placeholder {
+  color: rgba(234, 241, 255, 0.6);
+}
+
+.form-control:focus {
+  border-color: rgba(255, 255, 255, 0.45);
+  box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.25);
+  outline: none;
+}
+
+.btn {
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  color: #eef3ff;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.25);
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.btn:focus {
+  box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.25);
+}
+
+@media (max-width: 1024px) {
+  body {
+    background: radial-gradient(900px 700px at 15% 10%, rgba(108, 99, 255, 0.3), transparent 60%),
+      radial-gradient(800px 600px at 85% 20%, rgba(32, 201, 151, 0.22), transparent 60%),
+      radial-gradient(700px 600px at 50% 90%, rgba(255, 106, 213, 0.22), transparent 60%),
+      linear-gradient(135deg, #0f172a, #111827);
+  }
+}
+
+@media (max-width: 768px) {
+  .btn,
+  .form-control {
+    border-radius: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 15px;
+  }
 }

@@ -1,7 +1,25 @@
 .app-info {
-    padding: 25px;
-    background-color: #3d5a80;
-    border-radius: 4px;
-    box-shadow: 15px 15px 30px rgba(0,0,0, .15);
-    color: #fff;
+  padding: 28px 30px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 18px;
+  box-shadow: 0 20px 45px rgba(15, 23, 42, 0.25);
+  backdrop-filter: blur(14px);
+  color: #f6f8ff;
+}
+
+@media (max-width: 768px) {
+  .app-info {
+    padding: 22px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-info h1 {
+    font-size: 22px;
+  }
+
+  .app-info h2 {
+    font-size: 18px;
+  }
 }
