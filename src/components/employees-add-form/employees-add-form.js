@@ -19,7 +19,18 @@ class EmployeesAddForm extends Component {
     onSubmit = (e) => {
         e.preventDefault()
 
+        if (this.state.name.length < 3 || this.state.salary.length < 3) {
+            console.log('Less than 3 for name and 6 for salary ')
+            return
+        }
+
+        if (this.state.name.length > 50 || this.state.salary.length > 6) {
+            console.log('More than 50 for name and 6 for salary')
+            return
+        }
+
         if (!this.state.name || !this.state.salary) {
+            console.log('Print something')
             return
         }
         
