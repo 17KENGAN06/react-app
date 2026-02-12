@@ -17,29 +17,10 @@ class App extends Component {
           { name: 'Marco Rossi', salary: 750, increase: false, id: 2 },
           { name: 'Jan Kowalski', salary: 800, increase: true, id: 3 },
           { name: 'Mateo García', salary: 850, increase: false, id: 4 },
-          { name: 'Erik Svensson', salary: 900, increase: true, id: 5 },
-          { name: 'Thomas Müller', salary: 950, increase: false, id: 6 },
-          { name: 'Daniel Novak', salary: 1000, increase: true, id: 7 },
-          { name: 'Oliver Jensen', salary: 700, increase: false, id: 8 },
-          { name: 'Antoine Dubois', salary: 750, increase: true, id: 9 },
-          { name: 'Milan Horvat', salary: 800, increase: false, id: 10 },
-          { name: 'Sebastian Fischer', salary: 850, increase: true, id: 11 },
-          { name: 'Patrick O’Connor', salary: 900, increase: false, id: 12 },
-          { name: 'Victor Petrov', salary: 950, increase: true, id: 13 },
-          { name: 'Leonardo Bianchi', salary: 1050, increase: false, id: 14 },
-          { name: 'Filip Nowak', salary: 700, increase: true, id: 15 },
-          { name: 'Henrik Larsen', salary: 750, increase: false, id: 16 },
-          { name: 'Adrien Moreau', salary: 800, increase: true, id: 17 },
-          { name: 'Nikolai Ivanov', salary: 850, increase: false, id: 18 },
-          { name: 'Tomasz Zielinski', salary: 900, increase: true, id: 19 },
-          { name: 'Carlos Fernández', salary: 950, increase: false, id: 20 },
-          { name: 'Jonas Berg', salary: 1050, increase: true, id: 21 },
-          { name: 'Lorenzo Romano', salary: 700, increase: false, id: 22 },
-          { name: 'Jakub Svoboda', salary: 750, increase: true, id: 23 },
-          { name: 'Rafael Costa', salary: 800, increase: false, id: 24 },
-          { name: 'Mikkel Andersen', salary: 850, increase: true, id: 25 }
+          { name: 'Erik Svensson', salary: 900, increase: true, id: 5 }
       ]
     }
+    this.maxID = 5
   }
 
   deleteItem = (id) => {
@@ -61,6 +42,22 @@ class App extends Component {
     })
   }
 
+  addItem = (name, salary) => {
+    const newItem = {
+      name,
+      salary,
+      increase: false,
+      id: this.maxID++
+    }
+    this.setState(({data}) => {
+      const newArr = [...data, newItem]
+
+      return {
+        data: newArr
+      }
+    })
+  }
+
   render() {
     return (
       <div className="app">
@@ -72,7 +69,7 @@ class App extends Component {
         </div>
 
         <EmployeesList data={this.state.data} onDelete={this.deleteItem} />
-        <EmployeesAddForm />
+        <EmployeesAddForm onAdd={this.addItem} />
       </div>
   );
   }
