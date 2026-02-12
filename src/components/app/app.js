@@ -15,12 +15,10 @@ class App extends Component {
       data: [
           { name: 'Lukas Schmidt', salary: 700, increase: true, id: 1 },
           { name: 'Marco Rossi', salary: 750, increase: false, id: 2 },
-          { name: 'Jan Kowalski', salary: 800, increase: true, id: 3 },
-          { name: 'Mateo García', salary: 850, increase: false, id: 4 },
-          { name: 'Erik Svensson', salary: 900, increase: true, id: 5 }
+          { name: 'Jan Kowalski', salary: 800, increase: true, id: 3 }
       ]
     }
-    this.maxID = 5
+    this.maxID = 4
   }
 
   deleteItem = (id) => {
@@ -71,8 +69,26 @@ class App extends Component {
         <EmployeesList data={this.state.data} onDelete={this.deleteItem} />
         <EmployeesAddForm onAdd={this.addItem} />
       </div>
-  );
+    );
   }
+  
+  componentDidMount() {
+    window.addEventListener('wheel', this.handleScroll, { passive: false })
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('wheel', this.handleScroll)
+  }
+
+  handleScroll = (e) => {
+    e.preventDefault()
+
+    window.scrollBy({
+      top: e.deltaY * 0.1
+    })
+  }
+
 };
+
 
 export default App;
