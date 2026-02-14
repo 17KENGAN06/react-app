@@ -19,15 +19,16 @@ class App extends Component {
         { name: 'Sebastian Fischer', salary: 850, increase: false, rise: false, id: 11 },
         { name: 'Patrick O’Connor', salary: 900, increase: false, rise: false, id: 12 },
         { name: 'Victor Petrov', salary: 950, increase: false, rise: false, id: 13 },
-        { name: 'Leonardo Bianchi', salary: 1000, increase: false, rise: false, id: 14 },
+        { name: 'Leonardo Bianchi', salary: 1050, increase: false, rise: false, id: 14 },
         { name: 'Filip Nowak', salary: 700, increase: true, rise: false, id: 15 },
         { name: 'Henrik Larsen', salary: 750, increase: false, rise: false, id: 16 },
-        { name: 'Adrien Moreau', salary: 800, increase: false, rise: false, id: 17 },
-        { name: 'Nikolai Ivanov', salary: 850, increase: false, rise: false, id: 18 },
+        { name: 'Adrien Moreau', salary: 1300, increase: false, rise: false, id: 17 },
+        { name: 'Nikolai Ivanov', salary: 1150, increase: false, rise: false, id: 18 },
         { name: 'Tomasz Zielinski', salary: 900, increase: false, rise: false, id: 19 },
         { name: 'Carlos Fernández', salary: 950, increase: false, rise: false, id: 20 },
       ],
       term: '',
+      filter: 'salary',
     };
     this.maxID = 4;
   }
@@ -108,7 +109,7 @@ class App extends Component {
     }
 
     return items.filter((item) => {
-      return item.name.indexOf(term) > -1;
+      return item.name.toLowerCase().indexOf(term.toLowerCase()) > -1;
     });
   };
 
@@ -116,12 +117,23 @@ class App extends Component {
     this.setState({ term });
   };
 
+  onFilterEmployees = (items, filter) => {
+    switch (filter) {
+      case 'rise':
+        return items.filter((item) => item.rise);
+      case 'salary':
+        return items.filter((item) => item.salary > 1000);
+      default:
+        return items;
+    }
+  };
+
   render() {
     // VARIABLES
-    const { data, term } = this.state;
+    const { data, term, filter } = this.state;
     const employeesCounterIncrease = this.state.data.length;
     const employeesCounterRise = this.state.data.filter((item) => item.increase).length;
-    const visibleData = this.onSearch(data, term);
+    const visibleData = this.onFilterEmployees(this.onSearch(data, term), filter);
 
     return (
       <div className="app">
