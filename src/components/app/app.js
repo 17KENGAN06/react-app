@@ -10,47 +10,46 @@ import './app.css';
 
 class App extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       data: [
-          { name: 'Lukas Schmidt', salary: 700, increase: true, rise: true, id: 1 },
-          { name: 'Marco Rossi', salary: 750, increase: false, rise: false, id: 2 },
-          { name: 'Jan Kowalski', salary: 800, increase: false, rise: false, id: 3 },
-          { name: 'Sebastian Fischer', salary: 850, increase: false, rise: false, id: 11 },
-          { name: 'Patrick O’Connor', salary: 900, increase: false, rise: false, id: 12 },
-          { name: 'Victor Petrov', salary: 950, increase: false, rise: false, id: 13 },
-          { name: 'Leonardo Bianchi', salary: 1000, increase: false, rise: false, id: 14 },
-          { name: 'Filip Nowak', salary: 700, increase: true, rise: false, id: 15 },
-          { name: 'Henrik Larsen', salary: 750, increase: false, rise: false, id: 16 },
-          { name: 'Adrien Moreau', salary: 800, increase: false, rise: false, id: 17 },
-          { name: 'Nikolai Ivanov', salary: 850, increase: false, rise: false, id: 18 },
-          { name: 'Tomasz Zielinski', salary: 900, increase: false, rise: false, id: 19 },
-          { name: 'Carlos Fernández', salary: 950, increase: false, rise: false, id: 20 }
-      ]
-    }
-    this.maxID = 4
+        { name: 'Lukas Schmidt', salary: 700, increase: true, rise: true, id: 1 },
+        { name: 'Marco Rossi', salary: 750, increase: false, rise: false, id: 2 },
+        { name: 'Jan Kowalski', salary: 800, increase: false, rise: false, id: 3 },
+        { name: 'Sebastian Fischer', salary: 850, increase: false, rise: false, id: 11 },
+        { name: 'Patrick O’Connor', salary: 900, increase: false, rise: false, id: 12 },
+        { name: 'Victor Petrov', salary: 950, increase: false, rise: false, id: 13 },
+        { name: 'Leonardo Bianchi', salary: 1000, increase: false, rise: false, id: 14 },
+        { name: 'Filip Nowak', salary: 700, increase: true, rise: false, id: 15 },
+        { name: 'Henrik Larsen', salary: 750, increase: false, rise: false, id: 16 },
+        { name: 'Adrien Moreau', salary: 800, increase: false, rise: false, id: 17 },
+        { name: 'Nikolai Ivanov', salary: 850, increase: false, rise: false, id: 18 },
+        { name: 'Tomasz Zielinski', salary: 900, increase: false, rise: false, id: 19 },
+        { name: 'Carlos Fernández', salary: 950, increase: false, rise: false, id: 20 },
+      ],
+      term: '',
+    };
+    this.maxID = 4;
   }
 
-
-
   deleteItem = (id) => {
-    this.setState(({data}) => {
+    this.setState(({ data }) => {
       // const index = data.findIndex(elem => elem.id === id);
 
       // const before = data.slice(0, index);
       // const after = data.slice(index + 1);
 
-      // const newArr = [...before, ...after]; 
+      // const newArr = [...before, ...after];
 
       // return {
       //   data: newArr
       // }
 
       return {
-        data: data.filter(item => item.id !== id)
-      }
-    })
-  }
+        data: data.filter((item) => item.id !== id),
+      };
+    });
+  };
 
   addItem = (name, salary) => {
     const newItem = {
@@ -58,16 +57,16 @@ class App extends Component {
       salary,
       increase: false,
       rise: false,
-      id: this.maxID++
-    }
-    this.setState(({data}) => {
-      const newArr = [...data, newItem]
+      id: this.maxID++,
+    };
+    this.setState(({ data }) => {
+      const newArr = [...data, newItem];
 
       return {
-        data: newArr
-      }
-    })
-  }
+        data: newArr,
+      };
+    });
+  };
 
   onToggleIncrease = (id) => {
     // this.setState(({data}) => {
@@ -82,51 +81,70 @@ class App extends Component {
     //   }
     // })
 
-    this.setState(({data}) => ({
-      data: data.map(item => {
+    this.setState(({ data }) => ({
+      data: data.map((item) => {
         if (item.id === id) {
-          return {...item, increase: !item.increase}
+          return { ...item, increase: !item.increase };
         }
-        return item
-      })
-    }))
-
-    
-  }
+        return item;
+      }),
+    }));
+  };
 
   onToggleRise = (id) => {
-    this.setState(({data}) => ({
-      data: data.map(item => {
+    this.setState(({ data }) => ({
+      data: data.map((item) => {
         if (item.id === id) {
-          return {...item, rise: !item.rise}
+          return { ...item, rise: !item.rise };
         }
-        return item
-      })
-    }))
-  }
+        return item;
+      }),
+    }));
+  };
+
+  onSearch = (items, term) => {
+    if (term.length === 0) {
+      return items;
+    }
+
+    return items.filter((item) => {
+      return item.name.indexOf(term) > -1;
+    });
+  };
+
+  onSearchUpdate = (term) => {
+    this.setState({ term });
+  };
 
   render() {
-
-    // VARIABLES 
-     const employeesCounterIncrease = this.state.data.length;
-    const employeesCounterRise = this.state.data.filter(item => item.increase).length;
+    // VARIABLES
+    const { data, term } = this.state;
+    const employeesCounterIncrease = this.state.data.length;
+    const employeesCounterRise = this.state.data.filter((item) => item.increase).length;
+    const visibleData = this.onSearch(data, term);
 
     return (
       <div className="app">
-        <AppInfo onCounterIncrease={employeesCounterIncrease} onCounterRise={employeesCounterRise} />
+        <AppInfo
+          onCounterIncrease={employeesCounterIncrease}
+          onCounterRise={employeesCounterRise}
+        />
 
         <div className="search-panel">
-          <SearchPanel />
+          <SearchPanel onSearchUpdate={this.onSearchUpdate} />
           <AppFilter />
         </div>
 
-        <EmployeesList data={this.state.data} onDelete={this.deleteItem} onToggleIncrease={this.onToggleIncrease} onToggleRise={this.onToggleRise} />
+        <EmployeesList
+          data={visibleData}
+          onDelete={this.deleteItem}
+          onToggleIncrease={this.onToggleIncrease}
+          onToggleRise={this.onToggleRise}
+        />
         <EmployeesAddForm onAdd={this.addItem} />
       </div>
     );
   }
-
-};
-
+}
 
 export default App;
