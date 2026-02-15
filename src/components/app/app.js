@@ -11,8 +11,11 @@ import './app.css';
 class App extends Component {
   constructor(props) {
     super(props);
+
+    const savedData = JSON.parse(localStorage.getItem('employees'));
+
     this.state = {
-      data: [
+      data: savedData || [
         { name: 'Lukas Schmidt', salary: 700, increase: true, rise: true, id: 1 },
         { name: 'Marco Rossi', salary: 750, increase: false, rise: false, id: 2 },
         { name: 'Jan Kowalski', salary: 800, increase: false, rise: false, id: 3 },
@@ -29,7 +32,14 @@ class App extends Component {
       term: '',
       filter: 'all',
     };
+
     this.maxID = this.state.data.length + 1;
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.data !== this.state.data) {
+      localStorage.setItem('employees', JSON.stringify(this.state.data));
+    }
   }
 
   deleteItem = (id) => {
