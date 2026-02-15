@@ -2,9 +2,9 @@ import './app-filter.css';
 
 const AppFilter = (props) => {
   const buttonsData = [
-    { name: 'all', label: 'All employees' },
-    { name: 'rise', label: 'Up for promotion' },
-    { name: 'salary', label: 'Salary over $1000' },
+    { name: 'all', label: 'Kaikki työntekijät' },
+    { name: 'rise', label: 'Ehdolla ylennykseen' },
+    { name: 'salary', label: 'Palkka yli 1000 €' },
   ];
 
   const buttons = buttonsData.map(({ name, label }) => {

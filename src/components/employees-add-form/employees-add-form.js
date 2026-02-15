@@ -47,12 +47,12 @@ class EmployeesAddForm extends Component {
 
     return (
       <div className="app-add-form">
-        <h3>Add a new employee</h3>
+        <h3>Lisää uusi työntekijä</h3>
         <form className="add-form d-flex" onSubmit={this.onSubmit}>
           <input
             type="text"
             className="form-control new-post-label"
-            placeholder="What's his name?"
+            placeholder="Työntekijän nimi"
             name="name"
             value={this.state.name}
             onChange={this.onValueChange}
@@ -60,14 +60,14 @@ class EmployeesAddForm extends Component {
           <input
             type="number"
             className="form-control new-post-label"
-            placeholder="Salary in $?"
+            placeholder="Palkka €"
             name="salary"
             value={this.state.salary}
             onChange={this.onValueChange}
           />
 
           <button type="submit" className="btn btn-outline-light">
-            Add
+            Lisää
           </button>
         </form>
       </div>

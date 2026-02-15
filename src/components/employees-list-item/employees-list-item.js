@@ -1,27 +1,34 @@
 import './employees-list-item.css';
 
-const EmployeesListItem = (props) =>  {
+const EmployeesListItem = (props) => {
+  // VARIABLES
+  const { name, salary, onDelete, onToggleIncrease, onToggleRise, increase, rise, onSalaryChange } =
+    props;
 
-   // VARIABLES
-    const {name, salary, onDelete, onToggleIncrease, onToggleRise, increase, rise} = props
+  // INTERACTIVITY
+  let classNames = 'list-group-item d-flex justify-content-between';
 
-     // INTERACTIVITY
-    let classNames = 'list-group-item d-flex justify-content-between';
+  if (increase) {
+    classNames += ' increase';
+  }
 
-    if (increase) {
-      classNames += ' increase';
-    }
-
-    if (rise) {
-      classNames += ' like';
-    }
+  if (rise) {
+    classNames += ' like';
+  }
 
   // JSX
 
   return (
     <li className={classNames}>
-      <span className="list-group-item-label" onClick={onToggleRise}>{name}</span>
-      <input type="text" className="list-group-item-input" defaultValue={salary + ' $'} />
+      <span className="list-group-item-label" onClick={onToggleRise}>
+        {name}
+      </span>
+      <input
+        type="text"
+        className="list-group-item-input"
+        value={salary + ' €'}
+        onChange={(e) => onSalaryChange(+e.target.value)}
+      />
       <div className="d-flex justify-content-center align-items-center">
         <button type="button" className="btn-cookie btn-sm " onClick={onToggleIncrease}>
           <i className="fas fa-cookie"></i>
@@ -34,7 +41,6 @@ const EmployeesListItem = (props) =>  {
       </div>
     </li>
   );
-  
 };
 
 export default EmployeesListItem;
