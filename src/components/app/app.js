@@ -16,21 +16,20 @@ class App extends Component {
         { name: 'Lukas Schmidt', salary: 700, increase: true, rise: true, id: 1 },
         { name: 'Marco Rossi', salary: 750, increase: false, rise: false, id: 2 },
         { name: 'Jan Kowalski', salary: 800, increase: false, rise: false, id: 3 },
-        { name: 'Sebastian Fischer', salary: 850, increase: false, rise: false, id: 11 },
-        { name: 'Patrick O’Connor', salary: 900, increase: false, rise: false, id: 12 },
-        { name: 'Victor Petrov', salary: 950, increase: false, rise: false, id: 13 },
-        { name: 'Leonardo Bianchi', salary: 1050, increase: false, rise: false, id: 14 },
-        { name: 'Filip Nowak', salary: 700, increase: true, rise: false, id: 15 },
-        { name: 'Henrik Larsen', salary: 750, increase: false, rise: false, id: 16 },
-        { name: 'Adrien Moreau', salary: 1300, increase: false, rise: false, id: 17 },
-        { name: 'Nikolai Ivanov', salary: 1150, increase: false, rise: false, id: 18 },
-        { name: 'Tomasz Zielinski', salary: 900, increase: false, rise: false, id: 19 },
-        { name: 'Carlos Fernández', salary: 950, increase: false, rise: false, id: 20 },
+        { name: 'Sebastian Fischer', salary: 850, increase: false, rise: false, id: 4 },
+        { name: 'Patrick O’Connor', salary: 900, increase: false, rise: false, id: 5 },
+        { name: 'Leonardo Bianchi', salary: 1050, increase: false, rise: false, id: 6 },
+        { name: 'Filip Nowak', salary: 700, increase: true, rise: false, id: 7 },
+        { name: 'Henrik Larsen', salary: 750, increase: false, rise: false, id: 8 },
+        { name: 'Adrien Moreau', salary: 1300, increase: false, rise: false, id: 9 },
+        { name: 'Nikolai Ivanov', salary: 1150, increase: false, rise: false, id: 10 },
+        { name: 'Tomasz Zielinski', salary: 900, increase: false, rise: false, id: 11 },
+        { name: 'Carlos Fernández', salary: 950, increase: false, rise: false, id: 12 },
       ],
       term: '',
-      filter: 'salary',
+      filter: 'all',
     };
-    this.maxID = 4;
+    this.maxID = this.state.data.length + 1;
   }
 
   deleteItem = (id) => {
@@ -55,7 +54,7 @@ class App extends Component {
   addItem = (name, salary) => {
     const newItem = {
       name,
-      salary,
+      salary: +salary,
       increase: false,
       rise: false,
       id: this.maxID++,
@@ -128,6 +127,10 @@ class App extends Component {
     }
   };
 
+  onFilterSelect = (filter) => {
+    this.setState({ filter });
+  };
+
   render() {
     // VARIABLES
     const { data, term, filter } = this.state;
@@ -144,7 +147,7 @@ class App extends Component {
 
         <div className="search-panel">
           <SearchPanel onSearchUpdate={this.onSearchUpdate} />
-          <AppFilter />
+          <AppFilter filter={filter} onFilterSelect={this.onFilterSelect} />
         </div>
 
         <EmployeesList
