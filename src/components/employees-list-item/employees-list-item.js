@@ -26,7 +26,7 @@ const EmployeesListItem = (props) => {
       <input
         type="text"
         className="list-group-item-input"
-        value={salary + ' €'}
+        value={salary}
         onChange={(e) => onSalaryChange(+e.target.value)}
       />
       <div className="d-flex justify-content-center align-items-center">
